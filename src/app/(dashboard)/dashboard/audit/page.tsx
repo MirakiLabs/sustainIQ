@@ -42,25 +42,25 @@ export default function AuditPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Audit Hub</h1>
-          <p className="text-gray-500 dark:text-gray-400">Compliance tracking and audit management</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Audit Hub</h1>
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">Compliance tracking and audit management</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2 text-sm" size="sm">
             <Calendar className="w-4 h-4" />
-            Schedule Audit
+            <span className="hidden sm:inline">Schedule</span> Audit
           </Button>
-          <Button className="gap-2">
+          <Button className="gap-2 text-sm" size="sm">
             <FileText className="w-4 h-4" />
-            Generate Report
+            Report
           </Button>
         </div>
       </div>
 
       {/* Compliance Score */}
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-3">
         <Card className="md:col-span-1">
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-4">
@@ -109,7 +109,7 @@ export default function AuditPage() {
             <CardTitle>Compliance by Framework</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
               {complianceFrameworks.map((framework) => (
                 <div key={framework.name} className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
                   <div className="flex items-center justify-between mb-2">
@@ -129,7 +129,7 @@ export default function AuditPage() {
         </Card>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
         {/* Audit Schedule */}
         <Card>
           <CardHeader>
@@ -141,9 +141,9 @@ export default function AuditPage() {
               {auditRecords.map((audit) => (
                 <div
                   key={audit.id}
-                  className="flex items-center justify-between p-4 rounded-lg border border-gray-200 dark:border-gray-800"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 sm:p-4 rounded-lg border border-gray-200 dark:border-gray-800"
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     <div className={`p-2 rounded-lg ${
                       audit.status === 'completed' ? 'bg-emerald-100 dark:bg-emerald-900/50' :
                       audit.status === 'scheduled' ? 'bg-blue-100 dark:bg-blue-900/50' :
@@ -232,6 +232,7 @@ export default function AuditPage() {
           <CardDescription>Complete activity log with blockchain verification</CardDescription>
         </CardHeader>
         <CardContent>
+          <div className="overflow-x-auto -mx-6 px-6">
           <Table>
             <TableHeader>
               <TableRow>
@@ -267,6 +268,7 @@ export default function AuditPage() {
               ))}
             </TableBody>
           </Table>
+          </div>
         </CardContent>
       </Card>
     </div>

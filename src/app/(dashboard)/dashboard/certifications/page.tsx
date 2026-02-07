@@ -32,19 +32,19 @@ export default function CertificationsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Certifications</h1>
-          <p className="text-gray-500 dark:text-gray-400">Manage your sustainability certifications</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Certifications</h1>
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">Manage your sustainability certifications</p>
         </div>
-        <Button className="gap-2">
+        <Button className="gap-2 w-fit" size="sm">
           <Plus className="w-4 h-4" />
           Apply for Certification
         </Button>
       </div>
 
       {/* Stats */}
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-3">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
@@ -92,7 +92,7 @@ export default function CertificationsPage() {
           <CardTitle>Current Certifications</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {certifications.map((cert) => (
               <div
                 key={cert.id}
@@ -218,7 +218,7 @@ export default function CertificationsPage() {
           <CardDescription>Browse and apply for new certifications</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
             {availableCertifications.map((cert) => (
               <div
                 key={cert.name}

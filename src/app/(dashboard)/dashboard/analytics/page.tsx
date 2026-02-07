@@ -41,12 +41,12 @@ export default function AnalyticsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Predictive Analytics</h1>
-          <p className="text-gray-500 dark:text-gray-400">AI-powered insights and forecasting</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Predictive Analytics</h1>
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">AI-powered insights and forecasting</p>
         </div>
-        <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">
+        <div className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 w-fit">
           <Brain className="w-5 h-5" />
           <span className="text-sm font-medium">AI Engine Active</span>
         </div>
@@ -55,19 +55,19 @@ export default function AnalyticsPage() {
       {/* Forecast Chart */}
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
-            <CardTitle>30-Day Emission Forecast</CardTitle>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <CardTitle className="text-base sm:text-lg">30-Day Emission Forecast</CardTitle>
             <Tabs defaultValue="all">
-              <TabsList>
-                <TabsTrigger value="all">All Scenarios</TabsTrigger>
-                <TabsTrigger value="baseline">Baseline</TabsTrigger>
-                <TabsTrigger value="optimized">Optimized</TabsTrigger>
+              <TabsList className="h-8 sm:h-9">
+                <TabsTrigger value="all" className="text-xs sm:text-sm px-2 sm:px-3">All Scenarios</TabsTrigger>
+                <TabsTrigger value="baseline" className="text-xs sm:text-sm px-2 sm:px-3">Baseline</TabsTrigger>
+                <TabsTrigger value="optimized" className="text-xs sm:text-sm px-2 sm:px-3">Optimized</TabsTrigger>
               </TabsList>
             </Tabs>
           </div>
         </CardHeader>
         <CardContent>
-          <div className="h-80">
+          <div className="h-56 sm:h-80">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={forecastData.slice(0, 30)}>
                 <defs>
@@ -131,7 +131,7 @@ export default function AnalyticsPage() {
               </AreaChart>
             </ResponsiveContainer>
           </div>
-          <div className="mt-4 grid grid-cols-3 gap-4 text-sm">
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-sm">
             <div className="p-3 rounded-lg bg-indigo-50 dark:bg-indigo-900/30">
               <p className="text-indigo-600 dark:text-indigo-400 font-medium">Business as Usual</p>
               <p className="text-lg font-bold text-gray-900 dark:text-white">~36,500 tCO₂e</p>
@@ -152,7 +152,7 @@ export default function AnalyticsPage() {
       </Card>
 
       {/* AI Insights */}
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <Card>
             <CardHeader>
@@ -177,10 +177,10 @@ export default function AnalyticsPage() {
                       insight.type === 'recommendation' && 'border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-900/20'
                     )}
                   >
-                    <div className="flex items-start justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                       <div className="flex items-start gap-3">
                         <div className={cn(
-                          'p-2 rounded-lg',
+                          'p-2 rounded-lg flex-shrink-0',
                           insight.type === 'prediction' && 'bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-400',
                           insight.type === 'optimization' && 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900 dark:text-emerald-400',
                           insight.type === 'anomaly' && 'bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-400',
@@ -191,10 +191,10 @@ export default function AnalyticsPage() {
                           {insight.type === 'anomaly' && <AlertTriangle className="w-4 h-4" />}
                           {insight.type === 'recommendation' && <Lightbulb className="w-4 h-4" />}
                         </div>
-                        <div>
+                        <div className="min-w-0">
                           <p className="font-medium text-gray-900 dark:text-white">{insight.title}</p>
                           <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{insight.description}</p>
-                          <div className="flex items-center gap-4 mt-3">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-4 mt-3">
                             {insight.impact.co2Savings && (
                               <span className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">
                                 Save {insight.impact.co2Savings} tCO₂e
@@ -212,7 +212,7 @@ export default function AnalyticsPage() {
                           </div>
                         </div>
                       </div>
-                      <div className="flex flex-col items-end gap-2">
+                      <div className="flex sm:flex-col items-center sm:items-end gap-2 ml-11 sm:ml-0 flex-shrink-0">
                         <Badge variant="secondary">{insight.confidence}% confidence</Badge>
                         <Button variant="ghost" size="sm" className="gap-1">
                           Accept <ArrowRight className="w-3 h-3" />
@@ -274,7 +274,7 @@ export default function AnalyticsPage() {
           <CardTitle>Year-over-Year Comparison</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="h-64">
+          <div className="h-48 sm:h-64">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={yoyData}>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-gray-200 dark:stroke-gray-700" />
@@ -301,7 +301,7 @@ export default function AnalyticsPage() {
               </AreaChart>
             </ResponsiveContainer>
           </div>
-          <div className="mt-4 flex items-center justify-center gap-8">
+          <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
             <div className="text-center">
               <p className="text-sm text-gray-500 dark:text-gray-400">Total YoY Change</p>
               <p className="text-2xl font-bold text-emerald-600">-12.4%</p>

@@ -60,24 +60,26 @@ export default function DataInputPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Data Input</h1>
-          <p className="text-gray-500 dark:text-gray-400">Manage emission data entry and integrations</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Data Input</h1>
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">Manage emission data entry and integrations</p>
         </div>
-        <Button className="gap-2">
+        <Button className="gap-2 w-fit" size="sm">
           <Plus className="w-4 h-4" />
           Add Data Source
         </Button>
       </div>
 
       <Tabs defaultValue="manual" className="space-y-6">
-        <TabsList>
-          <TabsTrigger value="manual">Manual Entry</TabsTrigger>
-          <TabsTrigger value="upload">CSV Upload</TabsTrigger>
-          <TabsTrigger value="iot">IoT Sensors</TabsTrigger>
-          <TabsTrigger value="api">API Integration</TabsTrigger>
-        </TabsList>
+        <div className="overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0 no-scrollbar">
+          <TabsList className="w-max sm:w-auto">
+            <TabsTrigger value="manual" className="text-xs sm:text-sm">Manual Entry</TabsTrigger>
+            <TabsTrigger value="upload" className="text-xs sm:text-sm">CSV Upload</TabsTrigger>
+            <TabsTrigger value="iot" className="text-xs sm:text-sm">IoT Sensors</TabsTrigger>
+            <TabsTrigger value="api" className="text-xs sm:text-sm">API</TabsTrigger>
+          </TabsList>
+        </div>
 
         {/* Manual Entry */}
         <TabsContent value="manual">
@@ -88,7 +90,7 @@ export default function DataInputPage() {
             </CardHeader>
             <CardContent>
               <form className="space-y-6">
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
                   <div className="space-y-2">
                     <Label>Facility</Label>
                     <Select value={selectedFacility} onValueChange={setSelectedFacility}>
@@ -110,7 +112,7 @@ export default function DataInputPage() {
 
                 <div className="border rounded-lg p-4 space-y-4">
                   <h4 className="font-medium">Energy Consumption</h4>
-                  <div className="grid gap-4 md:grid-cols-3">
+                  <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                     <div className="space-y-2">
                       <Label>Grid Electricity (kWh)</Label>
                       <Input type="number" placeholder="0" />
@@ -128,7 +130,7 @@ export default function DataInputPage() {
 
                 <div className="border rounded-lg p-4 space-y-4">
                   <h4 className="font-medium">Process Emissions</h4>
-                  <div className="grid gap-4 md:grid-cols-3">
+                  <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                     <div className="space-y-2">
                       <Label>Production Volume (units)</Label>
                       <Input type="number" placeholder="0" />
@@ -146,7 +148,7 @@ export default function DataInputPage() {
 
                 <div className="border rounded-lg p-4 space-y-4">
                   <h4 className="font-medium">Transportation</h4>
-                  <div className="grid gap-4 md:grid-cols-3">
+                  <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                     <div className="space-y-2">
                       <Label>Truck km</Label>
                       <Input type="number" placeholder="0" />
@@ -179,7 +181,7 @@ export default function DataInputPage() {
               <CardDescription>Upload emission data from spreadsheets</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="border-2 border-dashed border-gray-200 dark:border-gray-800 rounded-xl p-12 text-center">
+              <div className="border-2 border-dashed border-gray-200 dark:border-gray-800 rounded-xl p-6 sm:p-12 text-center">
                 <FileSpreadsheet className="w-12 h-12 mx-auto text-gray-400 mb-4" />
                 <p className="text-lg font-medium text-gray-900 dark:text-white mb-2">
                   Drop your CSV file here
@@ -217,7 +219,7 @@ export default function DataInputPage() {
               </Button>
             </CardHeader>
             <CardContent>
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 {iotSensors.map((sensor) => (
                   <div
                     key={sensor.id}
@@ -267,9 +269,9 @@ export default function DataInputPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 flex items-center justify-between">
+                <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center flex-shrink-0">
                       <Database className="w-6 h-6 text-blue-600" />
                     </div>
                     <div>
@@ -277,13 +279,13 @@ export default function DataInputPage() {
                       <p className="text-sm text-gray-500">Push data programmatically</p>
                     </div>
                   </div>
-                  <Button variant="outline">View Documentation</Button>
+                  <Button variant="outline" size="sm">View Documentation</Button>
                 </div>
                 <div className="p-4 rounded-xl border">
                   <p className="font-medium mb-2">Your API Key</p>
-                  <div className="flex gap-2">
-                    <Input value="sk_live_••••••••••••••••••••" readOnly className="font-mono" />
-                    <Button variant="outline">Regenerate</Button>
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <Input value="sk_live_••••••••••••••••••••" readOnly className="font-mono text-sm" />
+                    <Button variant="outline" size="sm" className="flex-shrink-0">Regenerate</Button>
                   </div>
                   <p className="text-xs text-gray-500 mt-2">Keep this key secret. Never share it publicly.</p>
                 </div>
@@ -299,6 +301,7 @@ export default function DataInputPage() {
           <CardTitle>Import History</CardTitle>
         </CardHeader>
         <CardContent>
+          <div className="overflow-x-auto -mx-6 px-6">
           <Table>
             <TableHeader>
               <TableRow>
@@ -334,6 +337,7 @@ export default function DataInputPage() {
               ))}
             </TableBody>
           </Table>
+          </div>
         </CardContent>
       </Card>
     </div>

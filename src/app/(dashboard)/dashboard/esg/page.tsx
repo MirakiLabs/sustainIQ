@@ -61,25 +61,25 @@ export default function ESGPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">ESG Reporting</h1>
-          <p className="text-gray-500 dark:text-gray-400">Environmental, Social, and Governance metrics</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">ESG Reporting</h1>
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">Environmental, Social, and Governance metrics</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2 text-sm" size="sm">
             <Share2 className="w-4 h-4" />
-            Share Dashboard
+            <span className="hidden sm:inline">Share</span>
           </Button>
-          <Button className="gap-2">
+          <Button className="gap-2 text-sm" size="sm">
             <FileText className="w-4 h-4" />
-            Generate Report
+            Report
           </Button>
         </div>
       </div>
 
       {/* ESG Score Overview */}
-      <div className="grid gap-6 md:grid-cols-4">
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
         <Card className="bg-gradient-to-br from-purple-500 to-indigo-600 text-white">
           <CardContent className="p-6">
             <p className="text-purple-100">Overall ESG Score</p>
@@ -131,14 +131,14 @@ export default function ESGPage() {
         </Card>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
         {/* Radar Chart */}
         <Card>
           <CardHeader>
-            <CardTitle>Performance Overview</CardTitle>
+            <CardTitle className="text-base sm:text-lg">Performance Overview</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-72">
+            <div className="h-56 sm:h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <RadarChart data={radarData}>
                   <PolarGrid />
@@ -163,7 +163,7 @@ export default function ESGPage() {
             <CardTitle>ESG Score Trend</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-72">
+            <div className="h-56 sm:h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={trendData}>
                   <CartesianGrid strokeDasharray="3 3" className="stroke-gray-200 dark:stroke-gray-700" />
@@ -187,23 +187,25 @@ export default function ESGPage() {
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="environmental">
-            <TabsList>
-              <TabsTrigger value="environmental" className="gap-2">
-                <Leaf className="w-4 h-4" />
-                Environmental
-              </TabsTrigger>
-              <TabsTrigger value="social" className="gap-2">
-                <Users className="w-4 h-4" />
-                Social
-              </TabsTrigger>
-              <TabsTrigger value="governance" className="gap-2">
-                <Building2 className="w-4 h-4" />
-                Governance
-              </TabsTrigger>
-            </TabsList>
+            <div className="overflow-x-auto -mx-6 px-6 no-scrollbar">
+              <TabsList className="w-max sm:w-auto">
+                <TabsTrigger value="environmental" className="gap-1 sm:gap-2 text-xs sm:text-sm">
+                  <Leaf className="w-3 h-3 sm:w-4 sm:h-4" />
+                  Environmental
+                </TabsTrigger>
+                <TabsTrigger value="social" className="gap-1 sm:gap-2 text-xs sm:text-sm">
+                  <Users className="w-3 h-3 sm:w-4 sm:h-4" />
+                  Social
+                </TabsTrigger>
+                <TabsTrigger value="governance" className="gap-1 sm:gap-2 text-xs sm:text-sm">
+                  <Building2 className="w-3 h-3 sm:w-4 sm:h-4" />
+                  Governance
+                </TabsTrigger>
+              </TabsList>
+            </div>
 
             <TabsContent value="environmental" className="mt-6">
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 {environmentalMetrics.map((metric) => (
                   <div key={metric.name} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50">
                     <div className="flex items-center justify-between mb-2">
@@ -229,7 +231,7 @@ export default function ESGPage() {
             </TabsContent>
 
             <TabsContent value="social" className="mt-6">
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 {socialMetrics.map((metric) => (
                   <div key={metric.name} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50">
                     <div className="flex items-center justify-between mb-2">
@@ -255,7 +257,7 @@ export default function ESGPage() {
             </TabsContent>
 
             <TabsContent value="governance" className="mt-6">
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 {governanceMetrics.map((metric) => (
                   <div key={metric.name} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50">
                     <div className="flex items-center justify-between mb-2">
@@ -290,7 +292,7 @@ export default function ESGPage() {
           <CardDescription>Generate ESG reports for different frameworks</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 md:grid-cols-4">
+          <div className="grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-4">
             {['GRI', 'SASB', 'CDP', 'TCFD'].map((framework) => (
               <div key={framework} className="p-4 rounded-xl border border-gray-200 dark:border-gray-800 text-center hover:border-emerald-300 dark:hover:border-emerald-700 transition-colors cursor-pointer">
                 <p className="text-lg font-semibold text-gray-900 dark:text-white">{framework}</p>

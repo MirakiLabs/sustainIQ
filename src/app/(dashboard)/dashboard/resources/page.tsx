@@ -126,21 +126,21 @@ export default function ResourcesPage() {
   return (
     <div className="space-y-8 pb-10">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Resources & Tools</h1>
-          <p className="mt-2 text-lg text-gray-500 dark:text-gray-400">Comprehensive guide to regulations, sustainability tools, and learning materials.</p>
-        </div>
+      <div>
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Resources & Tools</h1>
+        <p className="mt-1 sm:mt-2 text-sm sm:text-base md:text-lg text-gray-500 dark:text-gray-400">Comprehensive guide to regulations, sustainability tools, and learning materials.</p>
       </div>
 
-      <Tabs defaultValue="regulations" className="space-y-8">
-        <TabsList className="grid h-12 w-full max-w-4xl grid-cols-5 bg-gray-100/50 p-1 dark:bg-gray-800/50">
-          <TabsTrigger value="regulations">Regulations</TabsTrigger>
-          <TabsTrigger value="tools">Tools</TabsTrigger>
-          <TabsTrigger value="learning">Learning</TabsTrigger>
-          <TabsTrigger value="casestudies">Case Studies</TabsTrigger>
-          <TabsTrigger value="templates">Templates</TabsTrigger>
-        </TabsList>
+      <Tabs defaultValue="regulations" className="space-y-6 sm:space-y-8">
+        <div className="overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0 no-scrollbar">
+          <TabsList className="grid h-10 sm:h-12 w-max sm:w-full sm:max-w-4xl grid-cols-5 bg-gray-100/50 p-1 dark:bg-gray-800/50">
+            <TabsTrigger value="regulations" className="text-xs sm:text-sm px-2 sm:px-4">Regulations</TabsTrigger>
+            <TabsTrigger value="tools" className="text-xs sm:text-sm px-2 sm:px-4">Tools</TabsTrigger>
+            <TabsTrigger value="learning" className="text-xs sm:text-sm px-2 sm:px-4">Learning</TabsTrigger>
+            <TabsTrigger value="casestudies" className="text-xs sm:text-sm px-2 sm:px-4">Case Studies</TabsTrigger>
+            <TabsTrigger value="templates" className="text-xs sm:text-sm px-2 sm:px-4">Templates</TabsTrigger>
+          </TabsList>
+        </div>
 
         {/* Regulations */}
         <TabsContent value="regulations" className="space-y-6">
@@ -253,8 +253,8 @@ export default function ResourcesPage() {
 
         {/* Tools */}
         <TabsContent value="tools">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+
             {/* Calculator */}
             <Card className="hover:shadow-lg transition-all border-emerald-100 dark:border-emerald-900/50">
               <CardHeader>
@@ -386,7 +386,7 @@ export default function ResourcesPage() {
 
         {/* Case Studies */}
         <TabsContent value="casestudies">
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
              {caseStudies.map((study, index) => (
                <Card key={index} className="overflow-hidden border-0 shadow-sm ring-1 ring-gray-200 dark:ring-gray-800 hover:shadow-md transition-all">
                   <div className="aspect-video w-full bg-gray-100 dark:bg-gray-800 relative">
@@ -422,7 +422,7 @@ export default function ResourcesPage() {
 
         {/* Learning Center */}
         <TabsContent value="learning">
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2">
             {learningResources.map((resource) => (
               <a 
                 key={resource.title}
@@ -488,20 +488,20 @@ export default function ResourcesPage() {
                 {templates.map((template) => (
                   <div
                     key={template.name}
-                    className="flex items-center justify-between p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group"
+                    className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 sm:p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group"
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 shadow-sm">
-                        <FileText className="w-5 h-5 text-emerald-600" />
+                    <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                      <div className="p-2 sm:p-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 shadow-sm flex-shrink-0">
+                        <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" />
                       </div>
-                      <div>
-                        <p className="font-medium text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">{template.name}</p>
-                        <p className="text-sm text-gray-500">
+                      <div className="min-w-0">
+                        <p className="font-medium text-sm sm:text-base text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">{template.name}</p>
+                        <p className="text-xs sm:text-sm text-gray-500">
                           {template.type} • {template.downloads.toLocaleString()} downloads
                         </p>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" className="gap-2 group-hover:border-emerald-200 dark:group-hover:border-emerald-800 group-hover:text-emerald-700 dark:group-hover:text-emerald-300">
+                    <Button variant="outline" size="sm" className="gap-2 flex-shrink-0 group-hover:border-emerald-200 dark:group-hover:border-emerald-800 group-hover:text-emerald-700 dark:group-hover:text-emerald-300">
                       <Download className="w-4 h-4" />
                       Download
                     </Button>

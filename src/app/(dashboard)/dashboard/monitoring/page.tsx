@@ -62,14 +62,14 @@ export default function MonitoringPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Real-time Monitoring</h1>
-          <p className="text-gray-500 dark:text-gray-400">Live emission data and sensor readings</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Real-time Monitoring</h1>
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">Live emission data and sensor readings</p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <Select value={selectedFacility} onValueChange={setSelectedFacility}>
-            <SelectTrigger className="w-64">
+            <SelectTrigger className="w-full sm:w-64">
               <SelectValue placeholder="Select facility" />
             </SelectTrigger>
             <SelectContent>
@@ -81,7 +81,7 @@ export default function MonitoringPage() {
               ))}
             </SelectContent>
           </Select>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-shrink-0">
             <div className={cn(
               'w-2 h-2 rounded-full',
               isLive ? 'bg-emerald-500 animate-pulse' : 'bg-gray-400'
@@ -101,7 +101,7 @@ export default function MonitoringPage() {
       </div>
 
       {/* Live Stats */}
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         <Card className="bg-gradient-to-br from-emerald-500 to-teal-600 text-white">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -157,14 +157,14 @@ export default function MonitoringPage() {
         </Card>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
         {/* 24-Hour Timeline */}
         <Card>
           <CardHeader>
-            <CardTitle>24-Hour Emission Timeline</CardTitle>
+            <CardTitle className="text-base sm:text-lg">24-Hour Emission Timeline</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64">
+            <div className="h-48 sm:h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={hourlyData}>
                   <CartesianGrid strokeDasharray="3 3" className="stroke-gray-200 dark:stroke-gray-700" />
@@ -195,11 +195,11 @@ export default function MonitoringPage() {
         {/* Emission Sources */}
         <Card>
           <CardHeader>
-            <CardTitle>Emission Sources Breakdown</CardTitle>
+            <CardTitle className="text-base sm:text-lg">Emission Sources Breakdown</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center gap-8">
-              <div className="w-48 h-48">
+            <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+              <div className="w-40 h-40 sm:w-48 sm:h-48 flex-shrink-0">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
@@ -250,7 +250,7 @@ export default function MonitoringPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {(selectedFacilityData?.sensors || facilities[0].sensors).map((sensor) => (
               <div
                 key={sensor.id}
@@ -301,7 +301,7 @@ export default function MonitoringPage() {
           <CardTitle>Current Energy Mix</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 md:grid-cols-4">
+          <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
             {energyMix.map((source) => {
               const Icon = source.name.includes('Electricity') ? Zap :
                 source.name.includes('Gas') ? Flame :

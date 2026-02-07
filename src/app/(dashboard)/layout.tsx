@@ -15,6 +15,7 @@ export default function DashboardLayout({
   const router = useRouter()
   const { isAuthenticated, isLoading } = useAuthStore()
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -44,15 +45,22 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <Sidebar collapsed={sidebarCollapsed} onCollapse={setSidebarCollapsed} />
+      <Sidebar
+        collapsed={sidebarCollapsed}
+        onCollapse={setSidebarCollapsed}
+        mobileOpen={mobileSidebarOpen}
+        onMobileClose={() => setMobileSidebarOpen(false)}
+      />
       <div
         className={cn(
           'transition-all duration-300',
-          sidebarCollapsed ? 'ml-20' : 'ml-64'
+          // No margin on mobile (sidebar is overlay), margin on desktop
+          'ml-0',
+          sidebarCollapsed ? 'md:ml-20' : 'md:ml-64'
         )}
       >
-        <Header />
-        <main className="p-6">{children}</main>
+        <Header onMobileMenuToggle={() => setMobileSidebarOpen(true)} />
+        <main className="p-3 sm:p-4 md:p-6">{children}</main>
       </div>
     </div>
   )

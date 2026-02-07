@@ -74,19 +74,19 @@ export default function MarketplacePage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Carbon Credit Marketplace</h1>
-          <p className="text-gray-500 dark:text-gray-400">Browse and purchase verified carbon credits</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Carbon Credit Marketplace</h1>
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">Browse and purchase verified carbon credits</p>
         </div>
-        <Button className="gap-2">
+        <Button className="gap-2 w-fit" size="sm">
           <ShoppingCart className="w-4 h-4" />
           Cart (0)
         </Button>
       </div>
 
       {/* Featured Projects Carousel */}
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {featuredCredits.map((credit) => {
           const Icon = PROJECT_TYPE_ICONS[credit.projectType] || Leaf
           return (
@@ -119,9 +119,9 @@ export default function MarketplacePage() {
         })}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-4">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-4">
         {/* Filters Sidebar */}
-        <Card className="lg:col-span-1 h-fit">
+        <Card className="lg:col-span-1 h-fit order-2 lg:order-1">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Filter className="w-4 h-4" />
@@ -200,7 +200,7 @@ export default function MarketplacePage() {
         </Card>
 
         {/* Credit Listings */}
-        <div className="lg:col-span-3 space-y-4">
+        <div className="lg:col-span-3 space-y-4 order-1 lg:order-2">
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-500">{filteredCredits.length} projects found</p>
             <Select defaultValue="price-low">
@@ -216,7 +216,7 @@ export default function MarketplacePage() {
             </Select>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-2">
             {filteredCredits.map((credit) => {
               const Icon = PROJECT_TYPE_ICONS[credit.projectType] || Leaf
               return (
@@ -258,14 +258,14 @@ export default function MarketplacePage() {
                                 View Details
                               </Button>
                             </DialogTrigger>
-                            <DialogContent className="max-w-2xl">
+                            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto mx-4">
                               <DialogHeader>
                                 <DialogTitle>{credit.projectName}</DialogTitle>
                                 <DialogDescription>{credit.projectType}</DialogDescription>
                               </DialogHeader>
                               <div className="space-y-4">
                                 <p className="text-gray-600 dark:text-gray-400">{credit.description}</p>
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                   <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800">
                                     <p className="text-sm text-gray-500">Location</p>
                                     <p className="font-medium">{credit.location.country}</p>
@@ -320,7 +320,7 @@ export default function MarketplacePage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="h-64">
+          <div className="h-48 sm:h-64">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={priceTrends}>
                 <XAxis dataKey="month" className="text-xs" />

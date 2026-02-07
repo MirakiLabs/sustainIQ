@@ -23,28 +23,58 @@ import {
   User,
   LogOut,
   HelpCircle,
+  Menu,
 } from 'lucide-react'
 import { useAuthStore } from '@/lib/store/auth-store'
 
-export function Header() {
+interface HeaderProps {
+  onMobileMenuToggle: () => void
+}
+
+export function Header({ onMobileMenuToggle }: HeaderProps) {
   const { theme, setTheme } = useTheme()
   const { user, logout } = useAuthStore()
   const [notifications] = useState(3)
+  const [searchOpen, setSearchOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-30 h-16 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
-      <div className="flex items-center justify-between h-full px-6">
-        {/* Search */}
-        <div className="relative w-full max-w-md">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-          <Input
-            placeholder="Search facilities, credits, regulations..."
-            className="pl-10 bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-800"
-          />
+    <header className="sticky top-0 z-30 h-14 sm:h-16 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
+      <div className="flex items-center justify-between h-full px-3 sm:px-6">
+        {/* Left side: Mobile menu + Search */}
+        <div className="flex items-center gap-2 flex-1 min-w-0">
+          {/* Mobile hamburger */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden flex-shrink-0"
+            onClick={onMobileMenuToggle}
+          >
+            <Menu className="h-5 w-5" />
+            <span className="sr-only">Toggle menu</span>
+          </Button>
+
+          {/* Search - hidden on mobile, visible on md+ */}
+          <div className="relative hidden sm:block w-full max-w-md">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Input
+              placeholder="Search facilities, credits, regulations..."
+              className="pl-10 bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-800"
+            />
+          </div>
+
+          {/* Mobile search toggle */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="sm:hidden flex-shrink-0"
+            onClick={() => setSearchOpen(!searchOpen)}
+          >
+            <Search className="h-5 w-5" />
+          </Button>
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
           {/* Theme Toggle */}
           <Button
             variant="ghost"
@@ -68,7 +98,7 @@ export function Header() {
                 )}
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-80">
+            <DropdownMenuContent align="end" className="w-72 sm:w-80">
               <DropdownMenuLabel>Notifications</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <div className="max-h-80 overflow-y-auto">
@@ -110,15 +140,15 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Help */}
-          <Button variant="ghost" size="icon">
+          {/* Help - hidden on small mobile */}
+          <Button variant="ghost" size="icon" className="hidden sm:inline-flex">
             <HelpCircle className="h-5 w-5" />
           </Button>
 
           {/* User Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="gap-2 pl-2 pr-3">
+              <Button variant="ghost" className="gap-2 pl-2 pr-2 sm:pr-3">
                 <Avatar className="h-8 w-8">
                   <AvatarFallback className="text-sm">
                     {user?.name?.split(' ').map(n => n[0]).join('') || 'U'}
@@ -156,6 +186,20 @@ export function Header() {
           </DropdownMenu>
         </div>
       </div>
+
+      {/* Mobile search bar - expandable */}
+      {searchOpen && (
+        <div className="sm:hidden px-3 pb-3 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 animate-slide-down">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Input
+              placeholder="Search..."
+              className="pl-10 bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-800"
+              autoFocus
+            />
+          </div>
+        </div>
+      )}
     </header>
   )
 }

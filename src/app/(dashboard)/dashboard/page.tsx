@@ -61,17 +61,17 @@ export default function DashboardOverview() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard Overview</h1>
-          <p className="text-gray-500 dark:text-gray-400">Monitor your carbon footprint and sustainability metrics</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Dashboard Overview</h1>
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">Monitor your carbon footprint and sustainability metrics</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2 text-sm" size="sm">
             <FileText className="w-4 h-4" />
-            Generate Report
+            <span className="hidden sm:inline">Generate</span> Report
           </Button>
-          <Button className="gap-2">
+          <Button className="gap-2 text-sm" size="sm">
             <Plus className="w-4 h-4" />
             Add Facility
           </Button>
@@ -79,7 +79,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         <KPICard
           title="Total Emissions (Current Month)"
           value={`${formatNumber(monthSummary.currentEmissions)} tCO₂e`}
@@ -143,22 +143,22 @@ export default function DashboardOverview() {
         </KPICard>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
         {/* Emissions Chart */}
         <Card className="lg:col-span-2">
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle>Emission Trends</CardTitle>
+          <CardHeader className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <CardTitle className="text-base sm:text-lg">Emission Trends</CardTitle>
             <Tabs value={emissionScope} onValueChange={setEmissionScope}>
-              <TabsList>
-                <TabsTrigger value="total">Total</TabsTrigger>
-                <TabsTrigger value="scope1">Scope 1</TabsTrigger>
-                <TabsTrigger value="scope2">Scope 2</TabsTrigger>
-                <TabsTrigger value="scope3">Scope 3</TabsTrigger>
+              <TabsList className="h-8 sm:h-9">
+                <TabsTrigger value="total" className="text-xs sm:text-sm px-2 sm:px-3">Total</TabsTrigger>
+                <TabsTrigger value="scope1" className="text-xs sm:text-sm px-2 sm:px-3">Scope 1</TabsTrigger>
+                <TabsTrigger value="scope2" className="text-xs sm:text-sm px-2 sm:px-3">Scope 2</TabsTrigger>
+                <TabsTrigger value="scope3" className="text-xs sm:text-sm px-2 sm:px-3">Scope 3</TabsTrigger>
               </TabsList>
             </Tabs>
           </CardHeader>
           <CardContent>
-            <div className="h-80">
+            <div className="h-56 sm:h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={chartData}>
                   <defs>
@@ -262,12 +262,13 @@ export default function DashboardOverview() {
       {/* Facility Table */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Facility Breakdown</CardTitle>
+          <CardTitle className="text-base sm:text-lg">Facility Breakdown</CardTitle>
           <Button variant="outline" size="sm">
             Export
           </Button>
         </CardHeader>
         <CardContent>
+          <div className="overflow-x-auto -mx-6 px-6">
           <Table>
             <TableHeader>
               <TableRow>
@@ -327,11 +328,12 @@ export default function DashboardOverview() {
               })}
             </TableBody>
           </Table>
+          </div>
         </CardContent>
       </Card>
 
       {/* Quick Actions */}
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-4">
         <Button variant="outline" className="h-auto p-4 flex flex-col items-start gap-2">
           <FileText className="w-5 h-5 text-emerald-600" />
           <span className="font-medium">Generate Monthly Report</span>

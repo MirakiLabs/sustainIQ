@@ -59,19 +59,21 @@ export default function SettingsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Settings</h1>
-        <p className="text-gray-500 dark:text-gray-400">Manage your account and organization settings</p>
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Settings</h1>
+        <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">Manage your account and organization settings</p>
       </div>
 
       <Tabs defaultValue="organization" className="space-y-6">
-        <TabsList>
-          <TabsTrigger value="organization">Organization</TabsTrigger>
-          <TabsTrigger value="facilities">Facilities</TabsTrigger>
-          <TabsTrigger value="team">Team</TabsTrigger>
-          <TabsTrigger value="notifications">Notifications</TabsTrigger>
-          <TabsTrigger value="api">API & Integrations</TabsTrigger>
-          <TabsTrigger value="billing">Billing</TabsTrigger>
-        </TabsList>
+        <div className="overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0 no-scrollbar">
+          <TabsList className="w-max sm:w-auto">
+            <TabsTrigger value="organization" className="text-xs sm:text-sm">Organization</TabsTrigger>
+            <TabsTrigger value="facilities" className="text-xs sm:text-sm">Facilities</TabsTrigger>
+            <TabsTrigger value="team" className="text-xs sm:text-sm">Team</TabsTrigger>
+            <TabsTrigger value="notifications" className="text-xs sm:text-sm">Notifications</TabsTrigger>
+            <TabsTrigger value="api" className="text-xs sm:text-sm">API</TabsTrigger>
+            <TabsTrigger value="billing" className="text-xs sm:text-sm">Billing</TabsTrigger>
+          </TabsList>
+        </div>
 
         {/* Organization Settings */}
         <TabsContent value="organization">
@@ -81,9 +83,9 @@ export default function SettingsPage() {
               <CardDescription>Manage your company information</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="flex items-center gap-6">
-                <div className="w-24 h-24 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center">
-                  <Building2 className="w-12 h-12 text-emerald-600" />
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center flex-shrink-0">
+                  <Building2 className="w-10 h-10 sm:w-12 sm:h-12 text-emerald-600" />
                 </div>
                 <div>
                   <Button variant="outline" size="sm">Upload Logo</Button>
@@ -91,7 +93,7 @@ export default function SettingsPage() {
                 </div>
               </div>
 
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label>Company Name</Label>
                   <Input defaultValue={user?.company || 'GreenTech Manufacturing Co.'} />
@@ -159,6 +161,7 @@ export default function SettingsPage() {
               </Button>
             </CardHeader>
             <CardContent>
+              <div className="overflow-x-auto -mx-6 px-6">
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -192,6 +195,7 @@ export default function SettingsPage() {
                   ))}
                 </TableBody>
               </Table>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
@@ -210,6 +214,7 @@ export default function SettingsPage() {
               </Button>
             </CardHeader>
             <CardContent>
+              <div className="overflow-x-auto -mx-6 px-6">
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -247,6 +252,7 @@ export default function SettingsPage() {
                   ))}
                 </TableBody>
               </Table>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
@@ -347,10 +353,12 @@ export default function SettingsPage() {
                   </div>
                   <Badge variant="success">Active</Badge>
                 </div>
-                <div className="flex gap-2">
-                  <Input value="sk_live_••••••••••••••••••••••••••••" readOnly className="font-mono" />
-                  <Button variant="outline">Copy</Button>
-                  <Button variant="outline">Regenerate</Button>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <Input value="sk_live_••••••••••••••••••••••••••••" readOnly className="font-mono text-sm" />
+                  <div className="flex gap-2 flex-shrink-0">
+                    <Button variant="outline" size="sm">Copy</Button>
+                    <Button variant="outline" size="sm">Regenerate</Button>
+                  </div>
                 </div>
               </div>
 
@@ -393,7 +401,7 @@ export default function SettingsPage() {
                   </div>
                   <Badge className="bg-white/20 text-white">Active</Badge>
                 </div>
-                <div className="grid grid-cols-3 gap-4 mt-4">
+                <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-4">
                   <div>
                     <p className="text-emerald-100 text-sm">Facilities</p>
                     <p className="text-xl font-bold">12 / 25</p>

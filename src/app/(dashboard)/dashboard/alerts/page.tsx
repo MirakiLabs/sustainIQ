@@ -70,17 +70,17 @@ export default function AlertsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Alerts & Anomalies</h1>
-          <p className="text-gray-500 dark:text-gray-400">Monitor and manage emission alerts</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Alerts & Anomalies</h1>
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">Monitor and manage emission alerts</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2 text-sm" size="sm">
             <Settings className="w-4 h-4" />
-            Configure Alerts
+            <span className="hidden sm:inline">Configure</span> Alerts
           </Button>
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2 text-sm" size="sm">
             <Download className="w-4 h-4" />
             Export
           </Button>
@@ -88,7 +88,7 @@ export default function AlertsPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-5">
+      <div className="grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
@@ -159,10 +159,10 @@ export default function AlertsPage() {
       {/* Alert History Chart */}
       <Card>
         <CardHeader>
-          <CardTitle>Alert History (Last 30 Days)</CardTitle>
+          <CardTitle className="text-base sm:text-lg">Alert History (Last 30 Days)</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="h-64">
+          <div className="h-48 sm:h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-gray-200 dark:stroke-gray-700" />
@@ -186,17 +186,17 @@ export default function AlertsPage() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <CardTitle>Active Alerts</CardTitle>
             <div className="flex flex-wrap items-center gap-2">
-              <div className="relative">
+              <div className="relative w-full sm:w-auto">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <Input
                   placeholder="Search alerts..."
-                  className="pl-9 w-64"
+                  className="pl-9 w-full sm:w-64"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-32">
+                <SelectTrigger className="w-[calc(50%-4px)] sm:w-32">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -207,7 +207,7 @@ export default function AlertsPage() {
                 </SelectContent>
               </Select>
               <Select value={severityFilter} onValueChange={setSeverityFilter}>
-                <SelectTrigger className="w-32">
+                <SelectTrigger className="w-[calc(50%-4px)] sm:w-32">
                   <SelectValue placeholder="Severity" />
                 </SelectTrigger>
                 <SelectContent>
@@ -222,6 +222,7 @@ export default function AlertsPage() {
           </div>
         </CardHeader>
         <CardContent>
+          <div className="overflow-x-auto -mx-6 px-6">
           <Table>
             <TableHeader>
               <TableRow>
@@ -288,6 +289,7 @@ export default function AlertsPage() {
               ))}
             </TableBody>
           </Table>
+          </div>
         </CardContent>
       </Card>
     </div>

@@ -34,25 +34,25 @@ export default function WalletPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Digital Wallet</h1>
-          <p className="text-gray-500 dark:text-gray-400">Manage your carbon credit portfolio</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Digital Wallet</h1>
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">Manage your carbon credit portfolio</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2 text-sm" size="sm">
             <Download className="w-4 h-4" />
             Export
           </Button>
-          <Button className="gap-2">
+          <Button className="gap-2 text-sm" size="sm">
             <Plus className="w-4 h-4" />
-            Purchase Credits
+            <span className="hidden sm:inline">Purchase</span> Credits
           </Button>
         </div>
       </div>
 
       {/* Balance Overview */}
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         <Card className="bg-gradient-to-br from-emerald-500 to-teal-600 text-white">
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-4">
@@ -104,11 +104,11 @@ export default function WalletPage() {
         </Card>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
         {/* Portfolio Breakdown */}
         <Card>
           <CardHeader>
-            <CardTitle>Portfolio by Project Type</CardTitle>
+            <CardTitle className="text-base sm:text-lg">Portfolio by Project Type</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-64">
@@ -142,6 +142,7 @@ export default function WalletPage() {
             <Button variant="ghost" size="sm">View All</Button>
           </CardHeader>
           <CardContent>
+            <div className="overflow-x-auto -mx-6 px-6">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -183,6 +184,7 @@ export default function WalletPage() {
                 ))}
               </TableBody>
             </Table>
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -193,7 +195,7 @@ export default function WalletPage() {
           <CardTitle>Retirement Certificates</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {transactions.filter(t => t.type === 'retire').map((tx) => (
               <div
                 key={tx.id}
