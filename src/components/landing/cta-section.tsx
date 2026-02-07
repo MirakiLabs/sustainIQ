@@ -6,14 +6,14 @@ import { ArrowRight, Sparkles } from 'lucide-react'
 
 export function CTASection() {
   return (
-    <section className="py-24 bg-gradient-to-br from-emerald-600 to-teal-600">
+    <section className="py-16 sm:py-24 bg-gradient-to-br from-emerald-600 to-teal-600">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 text-white text-sm font-medium mb-6">
           <Sparkles className="w-4 h-4" />
           <span>Start your sustainability journey today</span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
           Ready to Transform Your Carbon Management?
         </h2>
 

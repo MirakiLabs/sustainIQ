@@ -36,34 +36,34 @@ const regulations = [
 
 export function ComplianceSection() {
   return (
-    <section id="compliance" className="py-24 bg-gray-900 text-white">
+    <section id="compliance" className="py-16 sm:py-24 bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-center">
+          <div className="text-center lg:text-left">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
               Stay Compliant with
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400"> Global Standards</span>
             </h2>
-            <p className="text-lg text-gray-400 mb-8">
+            <p className="text-base sm:text-lg text-gray-400 mb-6 sm:mb-8">
               Our platform is designed to meet the most stringent regulatory requirements.
               Generate audit-ready reports for any framework with a single click.
             </p>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4 text-left">
               {regulations.map((regulation) => (
                 <div key={regulation} className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-                  <span className="text-gray-300">{regulation}</span>
+                  <span className="text-sm sm:text-base text-gray-300">{regulation}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {complianceBadges.map((badge) => (
               <div
                 key={badge.name}
-                className="bg-gray-800/50 backdrop-blur rounded-xl p-6 border border-gray-700 hover:border-emerald-500/50 transition-colors"
+                className="bg-gray-800/50 backdrop-blur rounded-xl p-4 sm:p-6 border border-gray-700 hover:border-emerald-500/50 transition-colors"
               >
                 <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center mb-4">
                   <CheckCircle className="w-6 h-6 text-emerald-400" />

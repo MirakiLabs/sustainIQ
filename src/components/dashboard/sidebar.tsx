@@ -23,6 +23,10 @@ import {
   ChevronLeft,
   LogOut,
   X,
+  Truck,
+  FileText,
+  Target,
+  Calculator,
 } from 'lucide-react'
 import { useAuthStore } from '@/lib/store/auth-store'
 
@@ -39,6 +43,10 @@ const iconMap = {
   BarChart3,
   BookOpen,
   Settings,
+  Truck,
+  FileText,
+  Target,
+  Calculator,
 }
 
 const navItems = [
@@ -52,6 +60,7 @@ const navItems = [
       { id: 'analytics', label: 'Predictive Analytics', href: '/dashboard/analytics', icon: 'TrendingUp' },
       { id: 'alerts', label: 'Alerts & Anomalies', href: '/dashboard/alerts', icon: 'Bell' },
       { id: 'data-input', label: 'Data Input', href: '/dashboard/data-input', icon: 'FileInput' },
+      { id: 'supply-chain', label: 'Supply Chain', href: '/dashboard/supply-chain', icon: 'Truck' },
     ],
   },
   {
@@ -71,6 +80,16 @@ const navItems = [
       { id: 'audit', label: 'Audit Hub', href: '/dashboard/audit', icon: 'ClipboardCheck' },
       { id: 'certifications', label: 'Certifications', href: '/dashboard/certifications', icon: 'Award' },
       { id: 'esg', label: 'ESG Reporting', href: '/dashboard/esg', icon: 'BarChart3' },
+      { id: 'reports', label: 'Reports', href: '/dashboard/reports', icon: 'FileText' },
+    ],
+  },
+  {
+    id: 'sustainability',
+    label: 'SUSTAINABILITY',
+    isSection: true,
+    items: [
+      { id: 'goals', label: 'Sustainability Goals', href: '/dashboard/goals', icon: 'Target' },
+      { id: 'calculator', label: 'Carbon Calculator', href: '/dashboard/calculator', icon: 'Calculator' },
     ],
   },
   { id: 'resources', label: 'Resources', href: '/dashboard/resources', icon: 'BookOpen' },
